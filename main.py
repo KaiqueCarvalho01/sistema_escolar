@@ -75,15 +75,23 @@ class SistemaDeRegistro:
         dados = self.cursor.fetchall()  #imprimir as informações do aluno
 
         for i in dados:
-            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[3]} | Sexo: {i[4]} Data de Nascimento: {i[5]} |  Endereco: {i[6]} | Curso: {i[7]} ')
+            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[4]} | Sexo: {i[5]} | Data de Nascimento: {i[6]} |  Endereco: {i[7]} | Curso: {i[8]} ')
 
     def visualizar_todos_professores(self): #função para visualizar os professors
         self.cursor.execute("SELECT * FROM professor")
         dados = self.cursor.fetchall() #imprimir as informações do professor
 
         for i in dados:
-            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[3]} | Sexo: {4} | Data de Nascimento: {i[5]} |  Endereco: {i[6]} | Especialidade: {i[7]} ')
+            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[4]} | Sexo: {i[5]} | Data de Nascimento: {i[6]} |  Endereco: {i[7]} | Especialidade: {i[8]} ')
 
+    def visualizar_todos_adm(self): # função para visuzaliar os adm
+        self.cursor.execute("SELECT * FROM administrador")
+        dados = self.cursor.fetchall() #imprimir as informações do adm
+        for i in dados:
+            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[4]} ')
+
+
+    #possivelmente arrumar a lista
     def procurar_aluno(self, id): #função para procurar alunos
         self.cursor.execute("SELECT * FROM aluno WHERE id = ?", (id,)) #virgula no fundo para evitar possiveis erros
         dados = self.cursor.fetchone()
@@ -177,13 +185,13 @@ def cadastro_adm():
 def menu_autenticado(tipo_usuario):
     if tipo_usuario == 'aluno':
         print("\n-- Menu do Aluno --")
-        # Adicione opções específicas para alunos
+        #  opções específicas para alunos
     elif tipo_usuario == 'professor':
         print("\n-- Menu do Professor --")
-        # Adicione opções específicas para professores
+        #  opções específicas para professores
     elif tipo_usuario == 'administrador':
         print("\n-- Menu do Administrador -- \n")
-        # Adicione opções específicas para administradores
+        #  opções específicas para administradores
         print("1- Cadastrar Aluno")
         print("2- Cadastrar Professor")
         print("3- Cadastrar Administrador")
