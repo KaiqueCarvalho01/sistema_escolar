@@ -76,7 +76,13 @@ class SistemaDeRegistro:
 
         for i in dados:
             print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[3]} | Sexo: {i[4]} Data de Nascimento: {i[5]} |  Endereco: {i[6]} | Curso: {i[7]} ')
-        
+
+    def visualizar_todos_professores(self): #função para visualizar os professors
+        self.cursor.execute("SELECT * FROM professor")
+        dados = self.cursor.fetchall() #imprimir as informações do professor
+
+        for i in dados:
+            print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[3]} | Sexo: {4} | Data de Nascimento: {i[5]} |  Endereco: {i[6]} | Especialidade: {i[7]} ')
 
     def procurar_aluno(self, id): #função para procurar alunos
         self.cursor.execute("SELECT * FROM aluno WHERE id = ?", (id,)) #virgula no fundo para evitar possiveis erros
@@ -102,16 +108,6 @@ class SistemaDeRegistro:
         print(f'Aluno com ID: {id} deletado com sucesso!')
         
     
-    """ def autenticar_usuario(self, email, senha):
-        self.cursor.execute("SELECT * FROM aluno WHERE email = ? and senha = ?", (email, senha))
-        encontrado = self.cursor.fetchone()
-        if encontrado:
-            print(f'Bem vindo de volta {encontrado[1]}') #retornando o usuário autenticado
-            return True
-        else:
-            print(f'E-mail ou senha não encontrado') #Retornando erro #None #retornando None se não encontrar o aluno
-            return False """
-        
     def autenticar_usuario(self, email, senha):
     # Verificar na tabela aluno
         self.cursor.execute("SELECT * FROM aluno WHERE email = ? AND senha = ?", (email, senha))
@@ -149,7 +145,7 @@ def cadastro_aluno():
         senha = input("Digite a senha do aluno: ")
         telefone = input("Digite o telefone do aluno: ")
         sexo = input("Digite o sexo do aluno: ")
-        data_nascimento = input("Digite a data de nascimento do aluno: ")
+        data_nascimento = input("Digite a data de nascimento do aluno (dd/mm/aaaa): ")
         endereco = input("Digite o endereco do aluno: ")
         curso = input("Digite o curso do aluno: ")
 
@@ -157,14 +153,14 @@ def cadastro_aluno():
         return  sistema_de_registro.registro_aluno(estudante)
 
 def cadastro_professor():
-        nome = input("Digite o nome do prof: ")
-        email = input("Digite o e-mail do prof: ")
-        senha = input("Digite a senha do prof: ")
-        telefone = input("Digite o telefone do prof: ")
-        sexo = input("Digite o sexo do prof: ")
-        data_nascimento = input("Digite a data de nascimento do prof: ")
-        endereco = input("Digite o endereco do prof: ")
-        especialidade = input("Digite o curso do prof: ")
+        nome = input("Digite o nome do professor: ")
+        email = input("Digite o e-mail do professor: ")
+        senha = input("Digite a senha do professor: ")
+        telefone = input("Digite o telefone do professor: ")
+        sexo = input("Digite o sexo do professor: ")
+        data_nascimento = input("Digite a data de nascimento do professor (dd/mm/aaaa): ")
+        endereco = input("Digite o endereco do professor: ")
+        especialidade = input("Digite o curso do professor: ")
 
         professor_dados = (nome, email, senha, telefone, sexo, data_nascimento, endereco, especialidade)
         return sistema_de_registro.registro_professor(professor_dados)
@@ -194,7 +190,8 @@ def menu_autenticado(tipo_usuario):
         print("4- Listar Alunos")
         print("5- Listar Professores")
         print("6- Listar Administradores")
-        print("7- Sair")
+        print("7- Atualizar dados")
+        print("8- Sair")
         opcao = input("\n Digite a opção desejada: ")
         if opcao == "1":
             cadastro_aluno()
@@ -203,12 +200,14 @@ def menu_autenticado(tipo_usuario):
         elif opcao == "3":
             cadastro_adm()
         elif opcao == "4":
-            sistema_de_registro.listar_alunos()
+            sistema_de_registro.visualizar_todos_alunos()
         elif opcao == "5":
-            sistema_de_registro.listar_professores()
+            sistema_de_registro.visualizar_todos_professores()
         elif opcao == "6":
-            sistema_de_registro.listar_administradores()
-        elif opcao == "7":
+            sistema_de_registro.visualizar_todos_adm()
+        #elif opcao == "7":
+            
+        elif opcao == "8":
             print("Saindo...")
             return False
         else:
@@ -226,13 +225,6 @@ def autenticar_usuario():
 
     if tipo_usuario:  # Se a autenticação for bem-sucedida
         menu_autenticado(tipo_usuario)  # Chama o menu autenticado com o tipo de usuário
-
-""" def autenticar_usuario():
-    email = input("Digite o e-mail: ")
-    senha = input("Digite a senha: ")
-    sistema_de_registro.autenticar_usuario(email, senha)
-    if sistema_de_registro.autenticar_usuario(email, senha):  # Se a autenticação for bem-sucedida
-        menu_autenticado()  # Chama o menu autenticado """
 
 
 #Função Menu
@@ -259,9 +251,6 @@ def menu():
 menu()
 
 
-""" #Ver alunos
-sistema_de_registro.visualizar_todos_alunos()
- """
 
 """ #Procurar Aluno
 sistema_de_registro.procurar_aluno(1)
@@ -275,9 +264,3 @@ aluno = sistema_de_registro.atualizar_aluno(estudante)
 """ #DELETAR ALUNO
 sistema_de_registro.deletar_aluno(1)
  """
-
-
-
-
-
-
