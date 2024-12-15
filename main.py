@@ -89,7 +89,7 @@ class SistemaDeRegistro:
         dados = self.cursor.fetchall() #imprimir as informações do adm
         for i in dados:
             print(f'ID: {i[0]} | Nome: {i[1]} | E-mail: {i[2]} | Telefone: {i[4]} ')
-
+        
 
     #possivelmente arrumar a lista
     def procurar_aluno(self, id): #função para procurar alunos
@@ -182,6 +182,8 @@ def cadastro_adm():
     adm_dados = (nome, email, senha, telefone)
     return sistema_de_registro.registro_adm(adm_dados)
 
+
+#####Corrigir: Menu voltando para autenticação após o término das funções
 def menu_autenticado(tipo_usuario):
     if tipo_usuario == 'aluno':
         print("\n-- Menu do Aluno --")
