@@ -40,7 +40,7 @@ O banco de dados possui as seguintes tabelas:
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/Kaiqueh1/sistema_escolar.git
+   git clone https://github.com/KaiqueCarvalho01/sistema_escolar.git
 2. **Certifique que o Python 3 está instalado.**
 3. **Rodando o sistema**:
    Para rodar o sistema, execute o script principal do projeto main.py ou use o seguinte comando no terminal:
