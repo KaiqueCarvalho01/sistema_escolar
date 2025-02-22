@@ -1,3 +1,5 @@
+## Projeto em Andamento
+
 # Sistema Escolar em Python
 
 Este projeto é um **sistema escolar** desenvolvido em Python, utilizando o banco de dados SQLite3, com o objetivo de gerenciar o cadastro e a atualização de informações sobre alunos, professores e administradores. O sistema permite a interação com dados como notas dos alunos e acessos restritos de acordo com o perfil de cada usuário.
@@ -50,4 +52,5 @@ O banco de dados possui as seguintes tabelas:
 
 ## Contribuições
 Sinta-se à vontade para contribuir com o projeto! 
+
 
